@@ -8,10 +8,10 @@ Included copy: [`Paveo-Mobile-design-reference.pdf`](Paveo-Mobile-design-referen
 
 ## Installable APK
 
-[`Paveo-Citizen-1.0.0.apk`](Paveo-Citizen-1.0.0.apk) is the prebuilt Android release APK found in the project build outputs and copied here for submission.
+[`Paveo-Citizen-1.0.2.apk`](Paveo-Citizen-1.0.2.apk) is the updated Android release built from the current Flutter source. The website download links to the `v1.0.2` GitHub Release asset because Firebase Hosting's Spark plan blocks APK uploads.
 
 ## Source code
 
 The complete Flutter source is in the repository root: [`lib/`](../../lib/), [`android/`](../../android/), and [`assets/`](../../assets/). The same codebase includes the admin panel and web build.
 
-To rebuild: `flutter build apk --release`.
+To rebuild: `flutter build apk --release`. Upload the resulting APK as `Paveo-Citizen-1.0.2.apk` on GitHub Release `v1.0.2`, then deploy the website with `firebase deploy --only hosting`.
