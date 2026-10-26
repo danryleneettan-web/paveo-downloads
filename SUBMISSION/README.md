@@ -25,7 +25,7 @@
 - Firebase is the configured hosting provider and Cloud Firestore is the database. No database export file is included; see its notes.
 - Hosting passwords and administrator sign-in details are intentionally not published. Share them directly with the instructor using an appropriate private channel, or create a temporary evaluation account.
 - This project does not currently contain a distinct rescuer/respondent app or APK. Confirm whether the instructor expects that role in this week's scope; do not present the resident APK as a separate rescuer build.
-- Website home and admin portal screenshots are included in `06-SCREENSHOTS/`. Resident mobile app screenshots are still needed.
+- Website home, admin report review, and resident map screenshots are included in `06-SCREENSHOTS/`. Resident home, report flow, and submitted-report tracking screenshots are still needed.
 
 ## Sharing on GitHub
 
