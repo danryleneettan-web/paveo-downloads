@@ -313,6 +313,7 @@ class _MapPageState extends State<MapPage> {
     body: StreamBuilder<QuerySnapshot>(
       stream: reportStream,
       builder: (c, s) {
+        final compact = MediaQuery.sizeOf(c).width < 600;
         final docs = (s.data?.docs ?? []).where(
           (d) => admin || d['status'] != 'flagged',
         );
@@ -332,6 +333,52 @@ class _MapPageState extends State<MapPage> {
               typeMatch &&
               (query.isEmpty || searchable.contains(query));
         }).toList();
+        final statusLegend = Container(
+          width: compact ? double.infinity : 264,
+          padding: EdgeInsets.all(compact ? 12 : 15),
+          decoration: BoxDecoration(
+            color: ivory,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: green, width: 1.4),
+            boxShadow: [
+              BoxShadow(
+                color: charcoal.withValues(alpha: 0.18),
+                blurRadius: 12,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Wrap(
+            spacing: 14,
+            runSpacing: 10,
+            children: [
+              Text(
+                'REPORT STATUS',
+                style: GoogleFonts.inter(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.7,
+                  color: charcoal,
+                ),
+              ),
+              _legendItem('Pending', statusPending),
+              _legendItem('In progress', statusInProgress),
+              _legendItem('Resolved', statusResolved),
+              if (admin) _legendItem('Flagged', statusFlagged),
+            ],
+          ),
+        );
+        final attribution = Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+          decoration: BoxDecoration(
+            color: ivory.withValues(alpha: 0.9),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Text(
+            '© OpenStreetMap contributors',
+            style: TextStyle(fontSize: 10, color: charcoal),
+          ),
+        );
         return Stack(
           fit: StackFit.expand,
           children: [
@@ -490,65 +537,47 @@ class _MapPageState extends State<MapPage> {
                 ),
               ),
             ),
-            Positioned(
-              left: 16,
-              bottom: 16,
-              child: Container(
-                width: 264,
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: ivory,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: green, width: 1.4),
-                  boxShadow: [
-                    BoxShadow(
-                      color: charcoal.withValues(alpha: 0.18),
-                      blurRadius: 12,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Wrap(
-                  spacing: 14,
-                  runSpacing: 10,
+            if (compact)
+              Positioned(
+                left: 12,
+                right: 12,
+                bottom: 16,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      'REPORT STATUS',
-                      style: GoogleFonts.inter(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.7,
-                        color: charcoal,
+                    attribution,
+                    const SizedBox(height: 8),
+                    if (user != null)
+                      FloatingActionButton.extended(
+                        heroTag: 'map-report-mobile',
+                        onPressed: widget.onReport ?? report,
+                        icon: const Icon(Icons.camera_alt),
+                        label: const Text('Report a pothole'),
                       ),
-                    ),
-                    _legendItem('Pending', statusPending),
-                    _legendItem('In progress', statusInProgress),
-                    _legendItem('Resolved', statusResolved),
-                    if (admin) _legendItem('Flagged', statusFlagged),
+                    if (user != null) const SizedBox(height: 12),
+                    statusLegend,
                   ],
                 ),
+              )
+            else ...[
+              Positioned(
+                left: 16,
+                bottom: 16,
+                child: statusLegend,
               ),
-            ),
-            Positioned(
-              right: 12,
-              bottom: user == null ? 10 : 82,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                decoration: BoxDecoration(
-                  color: ivory.withValues(alpha: 0.9),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Text(
-                  '© OpenStreetMap contributors',
-                  style: TextStyle(fontSize: 10, color: charcoal),
-                ),
+              Positioned(
+                right: 12,
+                bottom: user == null ? 10 : 82,
+                child: attribution,
               ),
-            ),
+            ],
           ],
         );
       },
     ),
-    floatingActionButton: user == null
+    floatingActionButton:
+        user == null || MediaQuery.sizeOf(context).width < 600
         ? null
         : FloatingActionButton.extended(
             onPressed: widget.onReport ?? report,
