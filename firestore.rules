@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+    function admin() {
+      return request.auth != null
+        && exists(/databases/$(db)/documents/users/$(request.auth.uid))
+        && get(/databases/$(db)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    match /users/{u} {
+      allow read: if request.auth.uid == u;
+      // Self-service sign-up can only create citizen accounts. Admin accounts
+      // must be provisioned by a trusted administrator outside the client app.
+      allow create: if request.auth != null
+        && request.auth.uid == u
+        && request.resource.data.role == 'citizen';
+      allow update: if request.auth.uid == u && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'contactNumber', 'address']);
+    }
+    match /reports/{r} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow update: if request.auth != null && (admin() || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['confirmedBy']));
+      allow delete: if admin();
+    }
+  }
+}
