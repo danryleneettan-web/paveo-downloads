@@ -20,7 +20,7 @@
 
 - One Flutter source project serves the web experience and Android citizen app. The admin panel is integrated into that project.
 - A release APK is included in `07-RESIDENT-APK/`.
-- Use the updated APK in `07-RESIDENT-APK/` for this submission. The repository's older GitHub release remains separate from this build.
+- Use APK release `v1.0.2` from the link in `07-RESIDENT-APK/README.md`. Firebase Hosting deploys the website; the APK is hosted as a GitHub Release asset because the Firebase Spark plan blocks APK files.
 - The mobile design reference PDF is included next to the APK.
 - Firebase is the configured hosting provider and Cloud Firestore is the database. No database export file is included; see its notes.
 - Hosting passwords and administrator sign-in details are intentionally not published. Share them directly with the instructor using an appropriate private channel, or create a temporary evaluation account.
@@ -29,6 +29,6 @@
 
 ## Sharing on GitHub
 
-Share the repository's main page URL. The README links to every labeled section. If the APK is too large for GitHub's browser upload, attach `Paveo-Citizen-1.0.0.apk` to a GitHub Release and add the release link to [the APK page](07-RESIDENT-APK/README.md).
+Share the repository's main page URL. The README links to every labeled section, and the APK page links to the latest public release.
 
 Keep the repository private if it contains real student data or instructor-only access information. Never put account passwords, private keys, Firebase service-account files, or personal data in the repository.
