@@ -1736,6 +1736,14 @@ class _ProfileSurfaceState extends State<_ProfileSurface> {
                 ),
               ),
             ),
+            if (kIsWeb) ...[
+              const Divider(height: 1, indent: 60, endIndent: 20),
+              _mobileProfileAction(
+                icon: Icons.android,
+                title: 'Download app',
+                onTap: paveo_download.openAndroidDownload,
+              ),
+            ],
             const Divider(height: 1, indent: 60, endIndent: 20),
             _mobileProfileAction(
               icon: Icons.support_agent_outlined,
