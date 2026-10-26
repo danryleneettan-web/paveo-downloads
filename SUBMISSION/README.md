@@ -20,6 +20,7 @@
 
 - One Flutter source project serves the web experience and Android citizen app. The admin panel is integrated into that project.
 - A release APK is included in `07-RESIDENT-APK/`.
+- Use the APK in `07-RESIDENT-APK/` for this submission. The repository already had an older APK under GitHub Releases; that older release was preserved.
 - The mobile design reference PDF is included next to the APK.
 - Firebase is the configured hosting provider and Cloud Firestore is the database. No database export file is included; see its notes.
 - Hosting passwords and administrator sign-in details are intentionally not published. Share them directly with the instructor using an appropriate private channel, or create a temporary evaluation account.

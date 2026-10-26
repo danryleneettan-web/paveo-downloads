@@ -22,6 +22,8 @@ Open the [submission checklist](SUBMISSION/README.md) for the instructor-facing 
 | Resident/citizen source | This repository: [`lib/`](lib/), [`android/`](android/), and [`assets/`](assets/) |
 | Rescuer/respondent app | [Status and clarification](SUBMISSION/08-RESCUER-APP/README.md) |
 
+For this Week 2 submission, use the APK linked in `SUBMISSION/07-RESIDENT-APK/`. The repository's older GitHub Release is a previous build.
+
 ## Build locally
 
 Install Flutter and Android SDK, then from the repository root run:
