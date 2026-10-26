@@ -1,8 +1,7 @@
 # 05 — Sample accounts for testing
 
-No sample passwords are published in this repository.
+The project owner has provided an evaluation account. Its email and password are intentionally omitted from this public repository; share the login details with the instructor privately.
 
-- **Citizen account:** use the app's sign-up flow to create an evaluation account with an instructor-approved test email. It creates a `citizen` profile.
-- **Administrator account:** must be provisioned by an authorized Firebase administrator by assigning `role: admin` to that test user's Firestore profile. Share its sign-in details privately if the instructor needs to test the admin panel.
+Before evaluation, confirm the account is active in Firebase Authentication and verify its Firestore profile role (`citizen` or `admin`). Admin-panel access requires the `admin` role. If separate citizen and admin tests are needed, provision a dedicated test account for each role.
 
-Use test-only data and a temporary account. Do not put real residents' details, passwords, or incident photos into a public repository.
+Use test-only data. Do not put passwords, real residents' details, or incident photos into this public repository.

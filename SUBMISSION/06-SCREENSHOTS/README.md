@@ -1,11 +1,13 @@
 # 06 — Interface screenshots
 
-**Status: screenshots still need to be added.** This folder contains no fabricated or placeholder screenshots.
+Screenshots provided for the Week 2 submission:
 
-Add clear images showing the current live website/landing page, citizen map or reporting flow, and admin panel. Use test data and obscure personal information. Save the images in this folder and embed them below so the instructor can preview them from the repository page.
+## Website home
 
-Example after adding files:
+![Paveo website home](01-paveo-website-home.png)
 
-```md
-![Paveo landing page](paveo-website.png)
-```
+## Admin portal
+
+![Paveo admin portal report overview](02-paveo-admin-portal.png)
+
+**Still needed:** screenshots of the resident mobile app, such as its home/map and report flow. Use test data and hide personal details before adding them.
